@@ -12,6 +12,10 @@ using Unosquare.FFME.Common;
 /// <summary>
 /// Power by https://github.com/unosquare/ffmediaelement
 /// Clone by https://github.com/ShelbyBoss/TakeVideoScreenshot
+/// FFmpegDirectory must be use ffmpeg build as shared library.
+/// If ffmpeg is 64bit, program is must be 64 bit.
+/// 
+/// Udp stream not reply previous frame, mean that I try to start/stop source, player is start from previous frame end.
 /// </summary>
 namespace FFMpegMediaElement {
     /// <summary>
@@ -25,10 +29,7 @@ namespace FFMpegMediaElement {
 
         public MainWindow() {
             InitializeComponent();
-
-            //NOTE:             
-            //If ffmpeg is 64bit, program is must be 64 bit.
-            //Only support ffmpeg shared library build.
+           
             Unosquare.FFME.Library.FFmpegDirectory = @"E:\Installers\ffmpeg\ffmpeg-20190826-0821bc4-win64-shared\bin";
 
             me.BufferingStarted += (s, e) => Debug.WriteLine("Buffer started.");
@@ -87,8 +88,9 @@ namespace FFMpegMediaElement {
                 if (dialogResult == System.Windows.Forms.DialogResult.OK) {
                     var files = dialog.FileNames;
                     var file = new FileInfo(files[0]);
-                    me.Source = new Uri(file.FullName);
-                    //me.Source = new Uri(@"rtsp://user:OfficeCCTV@10.1.10.10:554/cam/realmonitor?channel=2&subtype=1"); // file.FullName);
+                    //me.Source = new Uri(file.FullName);
+                    //me.Source = new Uri(@"rtsp://user:OfficeCCTV@10.1.10.10:554/cam/realmonitor?channel=2&subtype=1");
+                    me.Source = new Uri(@"udp://127.0.0.1:10001");
                     me.Play();
                 }
             }

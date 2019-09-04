@@ -1,5 +1,5 @@
 # FFMpegMediaElement
 Player by FFMpegMediaElement 
 
-/// Power by https://github.com/unosquare/ffmediaelement
-/// Clone by https://github.com/ShelbyBoss/TakeVideoScreenshot
+> Power by https://github.com/unosquare/ffmediaelement
+> Clone from https://github.com/ShelbyBoss/TakeVideoScreenshot

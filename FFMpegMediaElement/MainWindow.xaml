@@ -1,0 +1,38 @@
+﻿<Window x:Class="FFMpegMediaElement.MainWindow"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FFMpegMediaElement"
+        xmlns:ffme="clr-namespace:Unosquare.FFME;assembly=ffme.win"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="725"
+        AllowDrop="True" Drop="Window_Drop" KeyDown="Me_KeyDown">
+
+    <Grid Name="panel">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Button Content="File" Width="100" Height="22" Click="BtnFile_Click"/>
+            <Button Content="PlayPause" Width="100" Height="22" Click="BtnPlayPause_Click"/>
+            <Button Content="Slower" Width="100" Height="22" Click="BtnSlower_Click"/>
+            <Button Content="Faster" Width="100" Height="22" Click="BtnFaster_Click"/>
+            <Button Content="Frame Back" Width="100" Height="22" Click="BtnBack_Click"/>
+            <Button Content="Frame Forward" Width="100" Height="22" Click="BtnFor_Click"/>
+            <Button Content="Take" Width="100" Height="22" Click="BtnTake_Click"/>
+            <TextBox Name="tbxFilePrefix" Width="1550"/>
+        </StackPanel>
+
+        <Slider Grid.Row="1" Name="sld" Minimum="0" Maximum="1" IsMoveToPointEnabled="True"
+                ValueChanged="Sld_ValueChanged"/>
+
+        <ffme:MediaElement Grid.Row="2" Name="me" IsMuted="False" LoadedBehavior="Play" 
+                           MediaOpened="Me_MediaOpened" RenderingVideo="Me_RenderingVideo"/>
+
+        <Rectangle Grid.Row="2" Name="rect" Fill="Transparent" Focusable="True" PreviewMouseUp="Rect_PreviewMouseUp"/>
+    </Grid>
+</Window>
